@@ -9,9 +9,12 @@ private:
     std::string nombre;
     std::string descripcion;
     std::string fecha_venc;
-    std::list<Subtarea> subtarea;
+    std::list<Subtarea> subtareas;
 public:
     Tarea(std::string nombre, std::string descripcion, std::string fecha_venc);
+    void agregarSubTarea(Subtarea subtarea);
+    void eliminarSubTarea(std::string nombre);
+    void mostrarTarea();
 };
 
 

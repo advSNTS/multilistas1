@@ -11,6 +11,7 @@ private:
    std::string descripcion;
 public:
     Subtarea(std::string nombre, std::string descripcion);
+    std::string getNombre();
 };
 
 
