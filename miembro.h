@@ -12,8 +12,9 @@ private:
 
 public:
     Miembro(std::string nombre, std::string rol);
-    void agregarTarea(Tarea &tarea);
-    void eliminarTarea(Tarea &tarea);
+    void agregarTarea(Tarea tarea);
+    void eliminarTarea(std::string nombre);
+    void toString();
 };
 
 #endif

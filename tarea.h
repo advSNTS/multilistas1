@@ -15,6 +15,7 @@ public:
     void agregarSubTarea(Subtarea subtarea);
     void eliminarSubTarea(std::string nombre);
     void mostrarTarea();
+    std::string getNombre();
 };
 
 

@@ -1,5 +1,6 @@
 #include "subtarea.h"
 #include "tarea.h"
+#include "miembro.h"
 #include <list>
 
 Subtarea::Subtarea(std::string nombre, std::string descricion){
@@ -24,11 +25,16 @@ void Tarea::agregarSubTarea(Subtarea subtarea){
 }
 
 void Tarea::eliminarSubTarea(std::string nombre){
+    bool encontrado = false;
     for(std::list<Subtarea>::iterator it = this->subtareas.begin(); it != this->subtareas.end(); it++){
         if(it->getNombre()==nombre){
+            encontrado = true;
             this->subtareas.erase(it);
             break;
         }
+    }
+    if(!encontrado){
+        std::cout<<"La tarea '"<<nombre<<"' no se ha encontrado."<<std::endl;
     }
 }
 void Tarea::mostrarTarea()
@@ -49,4 +55,48 @@ void Tarea::mostrarTarea()
             std::cout << "  - " << it->getNombre() << std::endl;
         }
     }
+}
+std::string Tarea::getNombre(){
+    return this->nombre;
+}
+
+
+Miembro::Miembro(std::string nombre, std::string rol){
+    this->nombre = nombre;
+    this->rol = rol;
+}
+
+void Miembro::agregarTarea(Tarea tarea){
+    this->listaTareas.push_back(tarea);
+}
+void Miembro::eliminarTarea(std::string nombre){
+    bool encontrado = false;
+    for(std::list<Tarea>::iterator it = this->listaTareas.begin(); it != this->listaTareas.end(); it++){
+        if(it->getNombre()==nombre){
+            encontrado = true;
+            this->listaTareas.erase(it);
+            break;
+        }
+    }
+    if(!encontrado){
+        std::cout<<"El miembro '"<<this->nombre<<"' no tiene la tarea '"<<nombre<<"'."<<std::endl;
+    }
+
+}
+void Miembro::toString(){
+    std::cout<<"Nombre: "<<this->nombre<<"\nRol: "<<this->rol;
+    std::cout<<"Tareas: \n";
+    if(this->listaTareas.empty()){
+        std::cout<<"El miembro aun no tiene tareas."<<std::endl;
+    }
+    else{
+        int i = 1;
+        for (std::list<Tarea>::iterator it = this->listaTareas.begin(); it != this->listaTareas.end(); it++, i++)
+        {
+            std::cout<<"Tarea #"<<i;
+            it->mostrarTarea();
+        }
+    }
+    
+    
 }

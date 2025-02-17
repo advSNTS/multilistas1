@@ -1,10 +1,34 @@
 #include "tarea.h"
 #include "subtarea.h"
-
+#include "miembro.h"
 #include <iostream>
-using namespace std;
+#include <list>
+
+void agregarSubTarea(Tarea &tarea);
+void eliminarSubTarea(Tarea &tarea);
+void agregarTarea(std::list<Tarea> &tareas);
+
 int main(){
-    Tarea tarea1("Principal", "desc", "2983389");
-    tarea1.mostrarTarea();
+    std::list<Tarea> tareas;
+    agregarTarea(tareas);
+    
     return 0;
+}
+
+void agregarSubTarea(Tarea &tarea, std::string nombre, std::string descripcion){
+    tarea.agregarSubTarea(Subtarea(nombre, descripcion));
+}
+void eliminarSubTarea(Tarea &tarea, std::string nombre){
+    tarea.eliminarSubTarea(nombre); 
+}
+void agregarTarea(std::list<Tarea> &tareas){
+    std::string nombre, descripcion, vencimiento;
+    std::cout<<"Escriba nombre :";
+    std::getline(std::cin, nombre);
+    std::cout<<"\nEscriba descripcion: ";
+    std::getline(std::cin, descripcion);
+    std::cout<<"\nEscriba Fecha de venc.:";
+    std::getline(std::cin, vencimiento);
+    tareas.push_back(Tarea(nombre, descripcion, vencimiento));
+    
 }
